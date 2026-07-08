@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Weather App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Weather App</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#aboutSection">About</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Quick Cities
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a
+                  class="dropdown-item dropdown-city"
+                  href="#"
+                  data-city="Kathmandu"
+                  >Kathmandu</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item dropdown-city"
+                  href="#"
+                  data-city="Biratnagar"
+                  >Biratnagar</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item dropdown-city"
+                  href="#"
+                  data-city="Bandipur"
+                  >Bandipur</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex" id="searchForm">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search any city"
+            aria-label="Search"
+            id="searchInput"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <h1 class="text-center" id="cityHeading">Weather for Kathmandu</h1>
+    <main>
+      <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Temperatures</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title">
+                <span id="bigTemp">–</span
+                ><small class="text-body-secondary fw-light">&deg;C</small>
+              </h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Temperature is <span id="temp"></span></li>
+                <li>Min Temperature is <span id="minTemp"></span></li>
+                <li>Max Temperature is <span id="maxTemp"></span></li>
+              </ul>
+              <div class="fs-1" id="condIcon">🌡️</div>
+              <div class="fw-semibold" id="condText">Loading…</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Humidity Info</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title">
+                <span id="bigHumidity">–</span
+                ><small class="text-body-secondary fw-light">%</small>
+              </h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Wind Degree is <span id="windDeg"></span></li>
+                <li>Feels Like <span id="feelsLike"></span></li>
+                <li>Humidity is <span id="humidity"></span></li>
+              </ul>
+              <button type="button" class="w-100 btn btn-lg btn-primary">
+                <div class="fs-1" id="condIcon2">💧</div>
+                <div class="fw-semibold" id="condText2">Loading…</div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Wind Info</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title">
+                <span id="bigWind">–</span
+                ><small class="text-body-secondary fw-light"> km/hr</small>
+              </h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Wind Speed is <span id="windSpeed"></span></li>
+                <li>Sunrise Time is <span id="sunrise"></span></li>
+                <li>Sunset Time is <span id="sunset"></span></li>
+              </ul>
+              <div class="fs-1" id="condIcon3">🌬️</div>
+              <div class="fw-semibold" id="condText3">Loading…</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="display-6 text-center mb-4">Weather of other common places</h2>
+
+      <div class="table-responsive">
+        <table class="table table-hover table-striped align-middle text-center">
+          <thead>
+            <tr>
+              <th style="width: 12%" class="text-start">City</th>
+              <th>Cloud_pct</th>
+              <th>Feels_like</th>
+              <th>Max_temp</th>
+              <th>Min_temp</th>
+              <th>Sunrise</th>
+              <th>Sunset</th>
+              <th>Temp</th>
+              <th>Wind_degrees</th>
+              <th>Wind_speed</th>
+            </tr>
+          </thead>
+          <tbody id="weatherRows"></tbody>
+        </table>
+      </div>
+      <section id="aboutSection" class="container my-5">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card shadow-sm">
+              <div class="card-body text-center p-4">
+                <h2 class="mb-3">About This App</h2>
+                <p class="lead">
+                  A simple weather app that shows live conditions for any city
+                  in the world.
+                </p>
+                <p>
+                  Search a city or pick one from Quick Cities to see its
+                  temperature, humidity, and wind. Weather data comes free from
+                  <a href="https://open-meteo.com/" target="_blank"
+                    >Open-Meteo</a
+                  >.
+                </p>
+                <hr />
+                <p class="text-body-secondary mb-0">
+                  Built with HTML, Bootstrap &amp; JavaScript by Smaran
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
